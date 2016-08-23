@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Presto | Pull Restaurants Out Of Thin Air | Pittsburgh</title>
+	<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Damion|Lato:300,400,700" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<header id="header">
+		<div class="stickyNav">
+			<div class="row">
+				<a class="logoName" href="#header">foodHarmony</a>
+				<ul class="mainNav">
+					<li><a href="#search">Search</a></li>
+					<li><a href="#suggest">Add</a></li>
+					<li><a href="#">Join / Login</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="heroTextBox">
+			<h1>The right restaurant is out there.<br>We're here to help you find it.</h1>
+			<a class="button buttonFull" href="#search">Find a restaurant</a>
+			<a class="button buttonGhost" href="#suggest">Add a restaurant</a>
+		</div>
+	</header><!-- /header -->
+
+	<section id="search" class="searchSection">
+		<div class="row">
+			<h2>Find the right restaurant for you</h2>
+			<!--
+			<div class="searchContainer">
+				<div class="searchTitle">
+					<h3>Related search</h3>
+					<p>Type the name of a restaurant you like and hit search to find similar places. Presto!</p>
+				</div>
+				<div class="searchForm">
+					<div class="searchFormInnerContainer">
+						<div class="row">
+							<label for="restaurantName">Restauraunt name:</label>
+							<input type="text" id="restaurantName" name="restaurantName" value="" placeholder="ex. Joe's Cereal Shack" required>
+							<button id="relatedSearchButton" class="searchButton" type="button">Search</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
+			<div class="searchContainer">
+				<div class="searchTitle">
+					<h3>Let's find you a match</h3>
+					<p>Tell us a little about yourself</p>
+				</div>
+				<div class="searchForm">
+					<div class="searchFormInnerContainer">
+						<div class="row">
+							<label for="restaurantTypeSearch">I'm feeling:</label>
+							<select id="restaurantTypeSearch" name="typeOfRestaurantSearch">
+								<option value="">Up for anything</option>
+								<option value="fancy">Fancy</option>
+								<option value="casual">Casual</option>
+								<option value="nightIn">Like a night in</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="foodTypeSearch">I'm looking for:</label>
+							<select id="foodTypeSearch" name="typeOfFoodSearch">
+								<option value="">A surprise</option>
+								<option value="italian">Italian</option>
+								<option value="chinese">Chinese</option>
+								<option value="mexican">Mexican</option>
+								<option value="indian">Indian</option>
+								<option value="cajun">Cajun</option>
+								<option value="soul">Soul food</option>
+								<option value="thai">Thai</option>
+								<option value="greek">Greek</option>
+								<option value="japanese">Japanese</option>
+								<option value="american">American</option>
+								<option value="mediterranean">Mediterranean</option>
+								<option value="german">German</option>
+								<option value="caribbean">Caribbean</option>
+								<option value="french">French</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="costLevelSearch">I'm willing to spend:</label>
+							<select id="costLevelSearch" name="levelOfCostSearch">
+								<option value="">Whatever it takes</option>
+								<option value="$">$</option>
+								<option value="$$">$$</option>
+								<option value="$$$">$$$</option>
+								<option value="$$$$">$$$$</option>
+							</select>
+						</div>
+						<div class="row">
+							<button id="detailedSearchButton" class="searchButton" type="button">Make me a match</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="regsitrationSection">
+		<h2>Join the harmony</h2>
+		<div class="row">
+			<p>Want to customize your foodHarmony experience?<br>Refine your matches by:</p>
+			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Creating favorite lists</p>
+			<p class="bulletPoints"><img class="checkMark" src="resources/images/red-check.png" alt="red check mark">Hide restaurants you're not into</p>
+			<a id="signUpButton" class="button buttonFull" href="#">Join now</a>
+		</div>
+	</section>
+
+	<section id="suggest" class="suggestSection">
+		<h2>Play matchmaker</h2>
+		<p class="wideParagraph">Know a great place not listed on foodHarmony? Add it using this form.</p>
+		<p class="wideParagraph">As other foodHarmony users like it, your suggestion will climb the search ranks.</p>
+		<div class="row">
+			<div class="suggestContainer">
+				<form class="suggestForm">
+					<p class="required">*Required</p>
+
+					<label for="restName">Restaurant name*</label>
+					<input id="restName" type="text" name="restName" value="">
+
+					<div class="row">
+						<div class="col span-3-of-5">
+							<label for="streetAddress">Street address*</label>
+							<input id="streetAddress" type="text" name="streetAddress" value="">
+						</div>
+						<div class="col span-2-of-5">
+							<label for="zipcode">Zipcode</label>
+							<input id="zipcode" type="text" name="zipcode" value="">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col span-3-of-5">
+							<label for="website">Web address</label>
+							<input id="website" type="text" name="website" value="" placeholder="ex. www.yoursuggestion.com">
+						</div>
+						<div class="col span-2-of-5">
+							<label for="phoneNumber">Phone number</label>
+							<input id="phoneNumber" type="text" name="phoneNumber" value="" placeholder="ex. 4125551234">
+						</div>
+					</div>
+
+					<div class="row">
+						<label for="restaurantTypeSuggestion">Type of restaurant*</label>
+						<select id="restaurantTypeSuggestion" name="typeOfRestaurantSuggestion">
+							<option value="fancy">Fancy</option>
+							<option value="casual">Casual</option>
+							<option value="nightIn">Like a night in</option>
+						</select>
+					</div>
+
+					<div class="row">
+						<label for="foodTypeSuggestion">Type of food*</label>
+						<select id="foodTypeSuggestion" name="typeOfFoodSuggestion">
+							<option value="italian">Italian</option>
+							<option value="chinese">Chinese</option>
+							<option value="mexican">Mexican</option>
+							<option value="indian">Indian</option>
+							<option value="cajun">Cajun</option>
+							<option value="soul">Soul food</option>
+							<option value="thai">Thai</option>
+							<option value="greek">Greek</option>
+							<option value="japanese">Japanese</option>
+							<option value="american">American</option>
+							<option value="mediterranean">Mediterranean</option>
+							<option value="german">German</option>
+							<option value="caribbean">Caribbean</option>
+							<option value="french">French</option>
+						</select>
+					</div>
+
+					<div class="row">
+						<label for="costLevelSuggestion">Cost*</label>
+						<select id="costLevelSuggestion" name="levelOfCostSuggestion">
+							<option value="$">$</option>
+							<option value="$$">$$</option>
+							<option value="$$$">$$$</option>
+							<option value="$$$$">$$$$</option>
+						</select>
+					</div>
+
+					<div class="row">
+						<button id="suggestButton" class="searchButton" type="button">Add your match</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer id="footer" class="footer">
+		<div class="row">
+			<p>foodHarmony | Find the perfect restaurant for you | Pittsburgh, PA</p>
+			<p>&copy; 2016 foodHarmony <span class="superscript">TM</span> Media Pvt Ltd.</p>
+		</div>
+	</footer>
+
+</body>
+
+
+</html>
