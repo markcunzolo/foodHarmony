@@ -173,9 +173,20 @@
 					</div>
 
 					<div class="row">
-						<button id="suggestButton" class="searchButton" type="button">Add your match</button>
+						<button id="suggestButton" class="searchButton" type="button" onclick='addRestaurant()'>Add your match</button>
 					</div>
-
+					<div id='addRestaurantModal' class='modal'>
+					<div class='modalContent'>
+					<div class='modalHeader'>
+						<span class='close'>x</span>
+						<h2>Thank you!</h2>
+					</div>
+					<div class='modalBody'>	
+						<p>Thank you for adding a new restaurant to our system.<br>  
+							Every restaurant you add helps another foodHarmony user find their perfect match!</p>	
+					</div>
+					</div>
+					</div>
 				</form>
 			</div>
 		</div>
@@ -187,7 +198,7 @@
 			<p>&copy; 2016 foodHarmony <span class="superscript">TM</span> Media Pvt Ltd.</p>
 		</div>
 	</footer>
-
+<script type="text/javascript" src="resources/js/foodHarmony.js"></script>
 </body>
 
 
