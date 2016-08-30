@@ -113,6 +113,10 @@ $(document).ready(function(){ //when the document finishes loading, do these thi
   
   getRestaurantTypes();
   getFoodTypes();
+  
+  $('#detailedSearchButton').click(function(){
+    window.location = "results.html?type="+$('#restaurantTypeSearch').val()+"&food="+$('#foodTypeSearch').val()+"&cost="+$('#costLevelSearch').val();
+  })
 
 });
 

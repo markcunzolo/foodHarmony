@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>foodHarmony | Find the perfect restaurant for you | Pittsburgh</title>
+	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
@@ -19,8 +21,8 @@
 				<ul class="mainNav">
 					<li><a href="#search">Search</a></li>
 					<li><a href="#suggest">Add</a></li>
+					<li><a href="./index2.html">Contact Us</a></li>
 					<li><a href="#">Join / Login</a></li>
-					<li><a href="file:///Users/Chachi/Documents/Food%20app/foodHarmony/index2.html">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>
@@ -30,7 +32,8 @@
 			<a class="button buttonFull" href="#search">Find a restaurant</a>
 			<a class="button buttonGhost" href="#suggest">Add a restaurant</a>
 		</div>
-	</header><!-- /header -->
+	</header>
+	<!-- /header -->
 
 	<section id="search" class="searchSection">
 		<div class="row">
@@ -44,54 +47,24 @@
 					<div class="searchFormInnerContainer">
 						<div class="row">
 							<label for="restaurantTypeSearch">I'm feeling:</label>
-
-							<select name="restaurantTypeSearch" id="restaurantTypeSearch">
-					          <option value="">Up for anything</option>
-					        </select>
-
-
-							<select id="restaurantTypeSearch" name="typeOfRestaurantSearch">
+							<select id="restaurantTypeSearch">
 								<option value="">Up for anything</option>
-								<option value="fancy">Fancy</option>
-								<option value="casual">Casual</option>
-								<option value="nightIn">Like a night in</option>
 							</select>
 						</div>
 						<div class="row">
 							<label for="foodTypeSearch">I'm looking for:</label>
-
-							<select name="foodTypeSearch" id="foodTypeSearch">
-					          <option value="">A surprise</option>
-					        </select>
-
-					        <!--
-							<select id="foodTypeSearch" name="typeOfFoodSearch">
-								<option value="">A surprise</option>
-								<option value="italian">Italian</option>
-								<option value="chinese">Chinese</option>
-								<option value="mexican">Mexican</option>
-								<option value="indian">Indian</option>
-								<option value="cajun">Cajun</option>
-								<option value="soul">Soul food</option>
-								<option value="thai">Thai</option>
-								<option value="greek">Greek</option>
-								<option value="japanese">Japanese</option>
-								<option value="american">American</option>
-								<option value="mediterranean">Mediterranean</option>
-								<option value="german">German</option>
-								<option value="caribbean">Caribbean</option>
-								<option value="french">French</option>
-							</select>
-							-->
+							<select id="foodTypeSearch">
+					      <option value="">A surprise</option>
+					    </select>
 						</div>
 						<div class="row">
 							<label for="costLevelSearch">I'm willing to spend:</label>
-							<select id="costLevelSearch" name="levelOfCostSearch">
-								<option value="">Whatever it takes</option>
-								<option value="$">$</option>
-								<option value="$$">$$</option>
-								<option value="$$$">$$$</option>
-								<option value="$$$$">$$$$</option>
+							<select id="costLevelSearch">
+								<option value="5">Whatever it takes</option>
+								<option value="1">$</option>
+								<option value="2">$$</option>
+								<option value="3">$$$</option>
+								<option value="4">$$$$</option>
 							</select>
 						</div>
 						<div class="row">
@@ -181,16 +154,15 @@
 						<button id="suggestButton" class="searchButton" type="button" onclick='addRestaurant()'>Add your match</button>
 					</div>
 					<div id='addRestaurantModal' class='modal'>
-					<div class='modalContent'>
-					<div class='modalHeader'>
-						<span class='close'>x</span>
-						<h2>Thank you!</h2>
-					</div>
-					<div class='modalBody'>
-						<p>Thank you for adding a new restaurant to our system.<br>
-							Every restaurant you add helps another foodHarmony user find their perfect match!</p>
-					</div>
-					</div>
+						<div class='modalContent'>
+							<div class='modalHeader'>
+								<span class='close'>x</span>
+								<h2>Thank you!</h2>
+							</div>
+							<div class='modalBody'>
+								<p>Thank you for adding a new restaurant to our system.<br> Every restaurant you add helps another foodHarmony user find their perfect match!</p>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -204,13 +176,11 @@
 		</div>
 	</footer>
 
-
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
-    <script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript" src="resources/js/foodHarmony.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+	<script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/foodHarmony.js"type="text/javascript" charset="utf-8"></script>
 </body>
 
 
