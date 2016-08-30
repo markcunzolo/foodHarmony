@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>foodHarmony | Find the perfect restaurant for you | Pittsburgh</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Damion|Lato:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="vendors/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="vendors/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/results.css">
+</head>
+
+
+<body>
+
+	<div class="stickyNav">
+		<div class="row">
+			<a class="logoName" href="./">foodHarmony</a>
+			<ul class="mainNav">
+				<li><a href="#search">Search</a></li>
+				<li><a href="#suggest">Add</a></li>
+				<li><a href="./index2.html">Contact Us</a></li>
+				<li><a href="#">Join / Login</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<section id="resultsContainer" class="searchResults">
+
+		<div class="row">
+			<div class="resultContainer col span-4-of-5">
+				<h3 class="headline">Check us out</h3>
+				<div id="results">
+				</div>
+			</div>
+			<div class="filterContainer col span-1-of-5">
+				<h3 class="headline">Mix it up</h3>
+				<div class="searchForm">
+					<div class="searchFormInnerContainer">
+						<div class="row">
+							<label for="resultLayoutType">Show me:</label>
+							<select id="resultLayoutType" name="layoutType">
+								<option value="3"> &#xf00a; More</option>
+								<option value="2"> &#xf009; Some</option>
+								<option value="1"> &#xf0c8; Just one</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="restaurantTypeSearch">I'm feeling:</label>
+							<select id="restaurantTypeSearch">
+								<option value="">Up for anything</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="foodTypeSearch">I'm looking for:</label>
+							<select id="foodTypeSearch">
+								<option value="">A surprise</option>
+							</select>
+						</div>
+						<div class="row">
+							<label for="costLevelSearch">I'm willing to spend:</label>
+							<select id="costLevelSearch">
+								<option value="5">Whatever it takes</option>
+								<option value="1">$</option>
+								<option value="2">$$</option>
+								<option value="3">$$$</option>
+								<option value="4">$$$$</option>
+							</select>
+						</div>
+						<div class="row">
+							<button id="applyFiltersButton" class="searchButton" type="button">Apply Filters</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<div id="modal">
+		<div class="row">
+			<div class="col span-1-of-4">
+				<img id="infoRestaurantImage" src="#">
+			</div>
+			<div class="col span-3-of-4">
+				<div clas="row">
+					<div class="col span-4-of-4">
+						<h2>
+							Restaurant Information
+						</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col span-1-of-4 right bold">
+						Name:
+					</div>
+					<div id="infoRestaurantName" class="col span-3-of-4"></div>
+				</div>
+				<div class="row">
+					<div class="col span-1-of-4 right bold">
+						Address:
+					</div>
+					<div id="infoRestaurantAddress" class="col span-3-of-4"></div>
+				</div>
+				<div class="row">
+					<div class="col span-1-of-4 right bold">
+						Phone:
+					</div>
+					<div id="infoRestaurantPhone" class="col span-3-of-4"></div>
+				</div>
+				<div class="row">
+					<div class="col span-1-of-4 right bold">
+						Website:
+					</div>
+					<div id="infoRestaurantWebsite" class="col span-3-of-4"><a href="#"></a>&nbsp;<i class="fa fa-external-link" aria-hidden="true" title="Links to an external site, not controlled by foodHarmony."></i></div>
+				</div>
+				<div class="row">
+					<div class="col span-1-of-4 right bold">
+						Other:
+					</div>
+					<div class="col span-3-of-4">
+						<ul id="infoList">
+							<li id="infoRestaurantType"></li>
+							<li class="seperator"><i class="fa fa-asterisk" aria-hidden="true"></i></li>
+							<li id="infoRestaurantCuisine"></li>
+							<li class="seperator"><i class="fa fa-asterisk" aria-hidden="true"></i></li>
+							<li id="infoRestaurantCost"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<footer id="footer" class="footer">
+		<div class="row">
+			<p>foodHarmony | Find the perfect restaurant for you | Pittsburgh, PA</p>
+			<p>&copy; 2016 foodHarmony <span class="superscript">TM</span> Media Pvt Ltd.</p>
+		</div>
+	</footer>
+
+	<script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+	<script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
+	<script src="resources/js/results.js" type="text/javascript" charset="utf-8"></script>
+
+</body>
+
+
+</html>

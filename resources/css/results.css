@@ -1,0 +1,240 @@
+/**
+ * results.css
+ * New css and overrides from style.css for results.html
+ */
+
+
+
+/**
+ * GLOBAL CSS and Overrides
+ */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box !important;
+     -moz-box-sizing: border-box !important;
+      -ms-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  position:relative;
+}
+
+html {
+  height:100%;
+  cursor:default;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.stickyNav {
+	z-index: 9000;
+}
+
+.ui-front {
+	z-index: 90000 !important;
+}
+
+.ui-dialog {
+	z-index: 999999 !important;
+}
+
+.ui-tooltip {
+    white-space: pre-line;
+    font-size:0.75em;
+    text-align:center;
+}
+
+.ui-dialog-titlebar{
+  background-color: rgba(173, 0, 13, 1);
+  color: #FFF;
+}
+
+h3.headline{
+	border-bottom: #cf000f 2px solid;
+}
+
+#footer {
+  position:absolute !important;
+	width:100%;
+	height:100px;
+	bottom:0 !important;
+	left:0 !important;
+}
+
+
+
+/**
+ * RESULTS CSS
+ */
+.result{
+cursor:default;
+position:relative;
+padding:20px;
+}
+
+.result > div.restaurantLink:hover {
+  background-color: #EFEFEF;
+  border-radius: 5px;
+  padding:0px;
+  margin:0px;
+	box-shadow: 2px 2px 4px #ccc;
+}
+
+.result > div > div.restaurantName{
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+  white-space: nowrap;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result > div > div.restaurantImage {
+  text-align: center;
+  position:relative;
+}
+
+.result > div > div.restaurantImage > img{
+  position:relative;
+  cursor:pointer;
+  width:100%;
+  height:auto;
+  padding:5px;
+	margin-bottom:-2px;
+}
+
+.result > div.restaurantActions > span.pull-right {
+  padding-top:5px;
+  display:inline-block;
+  margin-left:5px;
+}
+
+.result > div.restaurantActions > span > .btn {
+  border-radius: 50%;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: transparent;
+  position:relative;
+}
+
+.result > div.restaurantActions > span > .btn:focus {
+  outline: 0;
+}
+
+.result > div.restaurantActions > span > .btn-default{
+  color: rgba(173, 0, 13, 1);
+  -webkit-transition: .25s ease;
+	   -moz-transition: .25s ease;
+	    -ms-transition: .25s ease;
+	     -o-transition: .25s ease;
+	        transition: .25s ease;
+}
+
+.result > div.restaurantActions > span > .btn-default:hover {
+  color: rgba(76, 175, 80, 1);
+  cursor:pointer;
+  -webkit-transition: .25s ease;
+	   -moz-transition: .25s ease;
+	    -ms-transition: .25s ease;
+	     -o-transition: .25s ease;
+	        transition: .25s ease;
+}
+
+
+.result > div.restaurantActions > span > .btn.btn-selected {
+  color: rgba(76, 175, 80, 1);
+  -webkit-transition: .25s ease;
+	   -moz-transition: .25s ease;
+	    -ms-transition: .25s ease;
+	     -o-transition: .25s ease;
+	        transition: .25s ease;
+}
+
+.result > div.restaurantActions > span > .btn.btn-selected:hover {
+  cursor:default;
+}
+
+#resultsContainer{
+  display:none;
+}
+
+#results .col {
+  margin:0 0 20px 0;
+}
+
+
+
+/**
+ * MODAL CSS
+ */
+#modal {
+  display:none;
+}
+
+#modal .span-3-of-4 {
+  font-size:0.8em;
+}
+
+ul#infoList{
+  list-style: none;
+}
+
+ul#infoList > li {
+  font-weight: bold;
+  text-align:center;
+  display: inline-block;
+}
+
+ul#infoList > li.seperator {
+  margin: 0 1em 0 1em;
+}
+
+#infoRestaurantImage{
+  width: 100%;
+  height:auto;
+}
+
+
+
+/**
+ * SEARCH OVERRIDES
+ */
+
+.searchForm {
+	background-color: #efefef;
+	border-radius: 0 0 10px 0;
+}
+
+.searchForm label {
+	text-align:  left;
+  margin-bottom:5px;
+}
+
+.searchButton {
+  cursor:pointer;
+}
+
+select {
+  cursor:pointer;
+	width:  100%;
+	font-family: "FontAwesome", "Lato", "Arial", sans-serif;
+}
