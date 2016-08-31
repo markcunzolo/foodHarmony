@@ -1,5 +1,5 @@
 body{
-background-image: url("/Users/kevinmason/Documents/ClassProject/foodHarmony/resources/css/images/lonelyDiner.jpeg");
+background-image: url("../css/images/lonelyDiner.jpeg");
 background-size: cover;
 background-position: center;
 background-attachment: fixed;
