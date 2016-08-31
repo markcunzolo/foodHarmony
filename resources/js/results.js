@@ -16,11 +16,7 @@
  */
 
 /** Global Variables */
-var resultsContainer = $("#results");
-var resultLayout = 3;
-var perPage = 9;
-var filterType,filterCuisine,filterCost=5;
-var apiResult = [];
+var resultsContainer = $("#results"), resultLayout = 3, perPage = 9, filterType="", filterCuisine="", filterCost=5, apiResult = [];
 
 /**
  * Parse provided JSON, filtering out requsted results. Returning the filtered results to be displayed.
@@ -32,44 +28,39 @@ function filter(data) {
   var destringify = JSON.parse(data);
   var tmp, types, genres;
   var response = [];
+  var typeFilter, cuisineFilter;
   
   for (var i = 0; i < destringify.length; i++) {
-    console.log("Reading new record...");
-    var typeFilter = $.each(destringify[i].types, function(j,v){
-      if(destringify[i].types[j].name === filterType){
-        return true;
-      } else {
-        return false;
+    
+    /** Check if type is correct */
+    $.each(destringify[i].types, function(j,v){
+      if(destringify[i].types[j].name === filterType || filterType.length <= 0){
+        typeFilter = true;
+        return(false);
       }
     });
-    /*var cuisineFilter = $.each(destringify[i].genres, function(j,v){
-      if(destringify[i].genres[j].name === filterCuisine){
-        return true;
-      } else {
-        return false;
+    
+    /** Check if cusisine is correct */
+    $.each(destringify[i].genres, function(j,v){
+      if(destringify[i].genres[j].name === filterCuisine || filterCuisine.length <= 0){
+        cuisineFilter = true;
+        return(false);
       }
-    });*/
+    });
+    
+    /** IF passes filters push to temp array to rebuild result */
     if(typeFilter){
-      //if(cuisineFilter){
-        if(destringify[i].cost <= filterCost){
-          console.log("Pushing " + destringify[i]);
+      if(cuisineFilter){
+        if(destringify[i].cost === filterCost || filterCost > 4){
           response.push(destringify[i]);
-        } else {
-          console.warn("Record does not match filterCost: " + destringify[i].cost);
         }
-      //} else {
-      //  console.warn("Record does not match filterCuisine: " + destringify[i].genres);
-      //}
-    } else {
-      console.warn("Record does not match filterType: " + destringify[i].types);
+      } 
     }
   }
   
   tmp = '[';
+  /** Loop through records */
   $.each(response, function(i, v) {
-    console.log("i = " + i);
-    console.log("v = " + v);
-    console.log();
     tmp += '{';
     tmp += '"id": ' + response[i].id + ', ';
     tmp += '"name": "' + response[i].name + '", ';
@@ -97,7 +88,10 @@ function filter(data) {
     tmp += '"created_at": "' + response[i].created_at + '",';
     tmp += '"updated_at": "' + response[i].updated_at + '",';
     tmp += '"types": [{';
+    
     types = "";
+    
+    /** Loop through types */
     $.each(response[i].types, function(j, v) {
       types += '"id": ' + response[i].types[j].id + ',';
       types += '"name": "' + response[i].types[j].name + '",';
@@ -109,14 +103,22 @@ function filter(data) {
       types += '"created_at": "' + response[i].types[j].created_at + '",';
       types += '"updated_at": "' + response[i].types[j].updated_at + '",';
     });
+    
+    /** Remove the trailing comma created in the for loop */
     types = types.substring(0, types.length - 1);
+    
+    /** Append types to tmp */
     tmp += types;
     tmp += '}],';
+    
+    /** Format string properly if genres exist for record */
     if(response[i].genres.length > 0) {
       tmp += '"genres": [{';
     } else {
       tmp += '"genres": [';
     }
+    
+    /** Loop through genres */
     genres = "";
     $.each(response[i].genres, function(k, v) {
       genres += '"id": ' + response[i].genres[k].id + ',';
@@ -129,25 +131,31 @@ function filter(data) {
       genres += '"created_at": "' + response[i].genres[k].created_at + '",';
       genres += '"updated_at": "' + response[i].genres[k].updated_at + '",';
     });
+    
+    /** Remove the trailing comma created in the for loop */
     genres = genres.substring(0, genres.length - 1);
+    
+    /** Append types to tmp */
     tmp += genres;
     if(response[i].genres.length > 0) {
       tmp += '}],';
     } else {
       tmp += '],';
     }
+    
     tmp += '"restaurant_likes": [';
+    /** Loop through likes */
     tmp += ']';
     tmp += '},';
   });
-  tmp = tmp.substring(0, tmp.length - 1);
+  
+  /** Only remove the last character in string if it is longer than 1 **/
+  if(tmp.length > 1){
+    /** Remove the trailing comma created in the for loop */
+    tmp = tmp.substring(0, tmp.length - 1);
+  }
+  
   tmp += ']';
-  console.log();
-  console.log(data);
-  console.log();
-  console.log(tmp);
-  //console.log(types);
-  //console.log(genres);
   displayResults(tmp);
 }
 
@@ -156,7 +164,7 @@ function filter(data) {
  * @param {json} results
  */
 function displayResults(results) {
-  var newResult, restaurantLink, restaurantName, restaurantImage, restaurantActions, resIMG, result, i, j, imgType, resultLayoutCSS, heightBuffer;
+  var newResult, restaurantLink, restaurantName, restaurantImage, restaurantActions, resIMG, result, i, j, k, imgType, resultLayoutCSS, heightBuffer;
 
   /** Validate results and sort by most liked */
   if (typeof results === 'string') {
@@ -193,7 +201,11 @@ function displayResults(results) {
     if (result.image) {
       resIMG = result.image;
     } else {
-      resIMG = "http://lous.work/dynIMG/foodHarmony/?font=Lato-Regular&cuisine=";
+      var cuisineName = "";
+      if(result.genres[0]){
+        cuisineName = result.genres[0].name;
+      }
+      resIMG = "http://lous.work/dynIMG/foodHarmony/?font=Lato-Regular&cuisine="+cuisineName;
     }
     
     /** Determine grid layout for resuilt */
@@ -361,7 +373,6 @@ function loadFilters(){
         } else {
           filterType = "";
         }
-        console.log("Setting filterType = " + filterType);
         break;
       case 'food':
         if(v.length >= 1){
@@ -370,7 +381,6 @@ function loadFilters(){
         } else {
           filterCuisine = "";
         }
-        console.log("Setting filterCuisine = " + filterCuisine);
         break;
       case 'cost':
         if(v.length >= 1){
@@ -379,11 +389,15 @@ function loadFilters(){
         } else {
           filterCost = 5;
         }
-        console.log("Setting filterCost = " + filterCost);
         break;
       default:
         console.warn("Unexpected parameter was found in URI.");
     }
+    /*
+    console.log("Setting filterType = " + filterType);
+    console.log("Setting filterCuisine = " + filterCuisine);
+    console.log("Setting filterCost = " + filterCost);
+    */
   }
 }
 
@@ -395,6 +409,12 @@ function setFilters(){
   filterType = $("#restaurantTypeSearch").val();
   filterCuisine = $("#foodTypeSearch").val();
   filterCost = $("#costLevelSearch").val();
+  /*
+  console.log("Setting resultLayout " + resultLayout);
+  console.log("Setting filterType " + filterType);
+  console.log("Setting filterCuisine " + filterCuisine);
+  console.log("Setting filterCost " + filterCost);
+  */
   
   /** Setting results per page */
   switch(resultLayout){
@@ -408,7 +428,7 @@ function setFilters(){
       perPage = 9;
   }
   
-  filter(JSON.stringify(apiResult));
+  filter(apiResult);
 }
 
 /**
