@@ -188,6 +188,44 @@ padding:20px;
 
 
 /**
+ * PAGINATION CSS
+ */
+#pagination{
+	text-align:center;
+}
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+#pagination > ul > li.active > a {
+		cursor: default;
+    background-color: #ad000d;
+    color: white;
+}
+
+#pagination > ul > li:not(.active) > a:hover {
+	cursor: pointer;
+	background-color: #ddd;
+}
+
+#pagination > ul > li.disabled > a:hover {
+	cursor:no-drop;
+	background-color: #ddd;
+}
+
+
+/**
  * MODAL CSS
  */
 #modal,

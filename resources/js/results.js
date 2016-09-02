@@ -22,22 +22,23 @@ var uID = 0,
     resultsContainer = $("#results"),
     resultLayout = 3,
     perPage = 9,
+    numPages,
     filterType = "",
     filterCuisine = "",
     filterCost = 5,
     apiResult = [];
 
 /** Debugging variables */
-var clearConsole = true,
-    hideWarn = false,
-    debug = true;
+var clearConsole = false,
+    hideWarn = true,
+    debug = false;
 
 /**
  * Parse provided JSON, filtering out requsted results. Returning the filtered results to be displayed.
  * @param {json} data
  * @return {json} filter
  */
-function filter(data) {
+function filter(pageNum, data) {
   if(clearConsole){console.clear();}
   if(!hideWarn){console.warn("Starting to filter results...");}
   var destringify = JSON.parse(data);
@@ -193,14 +194,15 @@ function filter(data) {
   }
 
   tmp += ']';
-  displayResults(tmp);
+  displayResults(pageNum, tmp);
 }
 
 /**
  * Parse provided JSON, prnt results to screen.
+ * @param {integer} num
  * @param {json} results
  */
-function displayResults(results) {
+function displayResults(pageNum, results) {
   if(!hideWarn){console.warn("Starting to display results...");}
   var newResult,
     restaurantLink,
@@ -210,6 +212,7 @@ function displayResults(results) {
     resIMG,
     result,
     i,
+    ii,
     j,
     k,
     imgType,
@@ -222,7 +225,9 @@ function displayResults(results) {
     likeCount = 0,
     dislikeCount = 0,
     isLiked = false,
-    isDisliked = false;
+    isDisliked = false,
+    maxLen,
+    pageCount;
   
   /** Validate results and sort by most liked */
   if (typeof results === 'string') {
@@ -281,10 +286,52 @@ function displayResults(results) {
     return 0;
   });
   
+  
+  
   if(!hideWarn){console.warn("> Displaying results.");}
+  perPage = parseInt(perPage);
+  pageNum = parseInt(pageNum);
+  
+  if(perPage === 1){
+    numPages = results.length;
+  } else if(results.length <= perPage){
+    numPages = 1;
+  } else if(results.length % perPage){
+    numPages = parseInt(results.length / perPage) + 1;
+  } else {
+    numPages = results.length / perPage;
+  }
+    
+  if(numPages <= 1){
+    numPages = 1;
+  }
+  
+  if(results.length <= perPage){
+    maxLen = perPage;
+  } else if(results.length % perPage && pageNum == numPages){
+    maxLen = results.length % perPage;
+    maxLen = results.length - maxLen;
+  } else {
+    maxLen = perPage;
+  }
+  
+  var iStart = ((pageNum * perPage) - perPage);
+  
+  if(pageNum > numPages){
+    results = [];
+    if(!hideWarn){console.warn("> No results!");}
+    var maxPageExceed =   '<div class="row"><div class="col span-3-of-3 center">We don\'t seem to have that many pages of results.<br />';
+        maxPageExceed +=  '<a href="#1" onclick="javascript:filter(1, apiResult);">Go to page 1</a> or click <a href="#1" onclick="javascript: setFilters()">Apply FIlters</a></div></div>';
+    resultsContainer.append(maxPageExceed);
+    $("#resultsContainer").fadeIn("slow");
+    return;
+  }
+  
+  ii = 0;
   /** Loop through each result & print it to the page */
-  for (i = 0; i < results.length; i++) {
-
+  //for (i = 0; i < results.length; i++) {
+  for (i = iStart; i < results.length; i++) {
+    ii++;
     /** Set result to the current record */
     result = results[i];
 
@@ -376,7 +423,7 @@ function displayResults(results) {
      * - Fix images so they are all the same height
      * - Add CSS to allow images to keep their aspect ratio
      */
-    if (i === parseInt(results.length - 1)) {
+    if (ii >= maxLen || i === parseInt(results.length - 1)) {
       if(debug){console.log("> Last record processed. Fading In result(s).");console.log("");}
       heightBuffer = 0.7;
       $("#resultsContainer").fadeIn("slow");
@@ -390,6 +437,34 @@ function displayResults(results) {
         "max-height": maxHeight,
         "height": maxHeight
       });
+      
+      resultsContainer.append('<div class="col span-3-of-3"><div id="pagination"></div></div>');
+      if(numPages >= 10){
+        $('#pagination').bootpag({
+            total: numPages,
+            page: pageNum,
+            maxVisible: 10,
+            href: "#{{number}}",
+            leaps: false,
+            next: 'next',
+            prev: 'previous'
+          });
+        } else {
+          $('#pagination').bootpag({
+            total: numPages,
+            page: pageNum,
+            maxVisible: numPages,
+            href: "#{{number}}",
+            leaps: false,
+            next: 'next',
+            prev: 'previous'
+          });
+      }
+      $('#pagination').on('page', function(event, num){
+        displayResults(num, results);
+      });
+      
+      return false;
     }
   }
 }
@@ -616,18 +691,32 @@ function setFilters() {
   filterCost = $("#costLevelSearch").val();
 
   /** Setting results per page */
-  switch (resultLayout) {
+  switch (parseInt(resultLayout)) {
     case 1:
       perPage = 1;
       break;
     case 2:
-      perPage = 2;
+      perPage = 4;
       break;
     default:
       perPage = 9;
   }
+  
+  var startPage;
+  var string = window.location.href;
+  if(string){string = string.split('#')[1];}
+  if(string){string = string.split('?')[0];}
+  
+  if (string) { // If there is a query string to extract
+    startPage = string;
+    if (startPage < 1) {
+      startPage = 1;
+    }
+  } else {
+    startPage = 1;
+  }
 
-  filter(apiResult);
+  filter(startPage, apiResult);
 }
 
 /**
@@ -763,6 +852,20 @@ function editAsset(result){
  */
 $().ready(function() {
   if(!hideWarn){console.warn("HTML & CSS loaded. Starting up JavaScript...");}
+  var startPage;
+  var string = window.location.href;
+  if(string){string = string.split('#')[1];}
+  if(string){string = string.split('?')[0];}
+  
+  if (string) { // If there is a query string to extract
+    startPage = string;
+    if (startPage < 1) {
+      startPage = 1;
+    }
+  } else {
+    startPage = 1;
+  }
+  
   /** Define elements that will use jQuery UI tooltips */
   $('#resultsContainer').tooltip();
   $('#modal > .row').tooltip();
@@ -781,7 +884,7 @@ $().ready(function() {
       /** Set filters */
       loadFilters();
       /** Send API Result through the filters */
-      filter(apiResult);
+      filter(startPage, apiResult);
     }
   });
 
