@@ -90,18 +90,11 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+function logout() {
+  $('#loginListItem').show();
+  $('#logoutListItem').hide();
+  localStorage.removeItem("usersName");  
+}
 
 
 
@@ -112,12 +105,21 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
 $(document).ready(function(){ //when the document finishes loading, do these things
   
   getRestaurantTypes();
+
   getFoodTypes();
-  $('#usersName').html(localStorage.getItem('usersName'));
+
+  if (localStorage.getItem('usersName')) {
+    $('#usersName').html('Welcome ' + localStorage.getItem('usersName') + '!');
+    $('#loginListItem').hide();
+    $('#logoutListItem').show();
+  } else {
+    $('#loginListItem').show();
+    $('#logoutListItem').hide();   
+  }
 
   $('#detailedSearchButton').click(function(){
     window.location = "results.html?type="+$('#restaurantTypeSearch').val()+"&food="+$('#foodTypeSearch').val()+"&cost="+$('#costLevelSearch').val();
-  })
+  });
 
 });
 
