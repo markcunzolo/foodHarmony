@@ -90,11 +90,13 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
   });
 }
 
-function logout() {
+/*function logout() {
   $('#loginListItem').show();
   $('#logoutListItem').hide();
-  localStorage.removeItem("usersName");  
-}
+  localStorage.removeItem("usersName");
+  localStorage.removeItem("usersId");
+  window.location = "login.html?logout";
+}*/
 
 
 
