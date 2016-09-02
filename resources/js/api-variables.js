@@ -9,3 +9,6 @@ var apiFoodTypes = apiEndpointBase + '/genres';
 
 //API location adding likes/dislikes
 var apiUpdateLikes = apiEndpointBase + '/restaurant_likes';
+
+//Location dynamic images are being served from
+var dynIMGBaseURL = 'http://lous.work/dynIMG/foodHarmony';

@@ -3,10 +3,6 @@
  * All JavaScript related to the results.html
  * 
  * TO DO:
- * Pagination:
- *  - 3 column = 9 per page
- *  - 2 column = 4 per page
- *  - 1 column = 1 per page
  *
  * API Calls:
  *  Create API calls where mentioned below to send/receive/update assets
@@ -29,12 +25,13 @@ var uID = 0,
     apiResult = [];
 
 /** Debugging variables */
-var clearConsole = false,
-    hideWarn = true,
-    debug = false;
+var clearConsole = false, //Production: false
+    hideWarn = true,      //Production: true
+    debug = false;        //Production: false
 
 /**
  * Parse provided JSON, filtering out requsted results. Returning the filtered results to be displayed.
+ * @param {number} pageNum
  * @param {json} data
  * @return {json} filter
  */
@@ -87,6 +84,7 @@ function filter(pageNum, data) {
   
   if(!hideWarn){console.warn("> Rebuilding JSON with results that passed above filters.");}
   tmp = '[';
+  
   /** Loop through records */
   $.each(response, function(i, v) {
     if(debug){console.log("> Building %s", response[i].id);}
@@ -121,6 +119,7 @@ function filter(pageNum, data) {
     types = "";
     
     if(debug){console.log("> Building type(s)");}
+    
     /** Loop through types */
     $.each(response[i].types, function(j, v) {
       types += '"id": ' + response[i].types[j].id + ',';
@@ -142,6 +141,7 @@ function filter(pageNum, data) {
     tmp += '}],';
 
     tmp += '"genres": [';
+    
     /** Loop through genres */
     genres = "";
     if(debug){console.log("> Building genre(s)");}
@@ -199,7 +199,7 @@ function filter(pageNum, data) {
 
 /**
  * Parse provided JSON, prnt results to screen.
- * @param {integer} num
+ * @param {integer} pageNum
  * @param {json} results
  */
 function displayResults(pageNum, results) {
@@ -215,7 +215,6 @@ function displayResults(pageNum, results) {
     ii,
     j,
     k,
-    imgType,
     resultLayoutCSS,
     heightBuffer,
     alikeCounter,
@@ -226,8 +225,7 @@ function displayResults(pageNum, results) {
     dislikeCount = 0,
     isLiked = false,
     isDisliked = false,
-    maxLen,
-    pageCount;
+    maxLen;
   
   /** Validate results and sort by most liked */
   if (typeof results === 'string') {
@@ -482,16 +480,17 @@ function getRestaurantLogo(asset) {
     if (asset.genres[0]) {
       cuisineName = asset.genres[0].name;
     }
-    return "http://lous.work/dynIMG/foodHarmony/?font=Lato-Regular&cuisine=" + cuisineName;
+    return dynIMGBaseURL+"/?font=Lato-Regular&cuisine=" + cuisineName;
   }
 }
 
 /**
- * Increment like counter, decrement dislike counter if needed, and make an API call to update for everyone else
+ * Make an API call to update like/dislike for user
  * @param {number} resId
  */
 function addLike(resId) {
   if(debug){console.log("> Function Called: addLike("+resId+")");}
+  /** Ensure user is logged in to use this feature */
   if(uID <= 0){
       if(debug){console.log("> User is not logged in. Display modal asking for login.");}
       $("#loginModal").dialog({
@@ -512,7 +511,14 @@ function addLike(resId) {
           }
         },
         open: function(event, ui) {
+          /** Hide Overflow of html, visual improvement when modal is open */
+          $("html").css("overflow", "hidden");
+          /** Set focus to parent so close button is not selected by default */
           $(this).parent().focus();
+        },
+        beforeClose: function(){
+          /** Setting overflow of html back to normal */
+          $('html').css("overflow", "visible");
         }
       });
       return;
@@ -523,9 +529,8 @@ function addLike(resId) {
   } else {
     /**
      * API Call:
-     * PUT increment like counter for asset & decrement dislike counter for asset if needed
+     * PUT liked = true and disliked = false for logged in user.
      */
-    //TO DO
     var newLike = {
       restaurant_like: {
         restaurant_id: resId,
@@ -557,11 +562,12 @@ function addLike(resId) {
 }
 
 /**
- * Increment like counter, decrement dislike counter if needed, and make an API call to update for everyone else
+ * Make an API call to update like/dislike for user
  * @param {number} resId
  */
 function addDislike(resId) {
   if(debug){console.log("> Function Called: addDislike("+resId+")");}
+  /** Ensure user is logged in to use this feature */
   if(uID <= 0){
       if(debug){console.log("> User is not logged in. Display modal asking for login.");}
       $("#loginModal").dialog({
@@ -582,7 +588,14 @@ function addDislike(resId) {
           }
         },
         open: function(event, ui) {
+          /** Hide Overflow of html, visual improvement when modal is open */
+          $("html").css("overflow", "hidden");
+          /** Set focus to parent so close button is not selected by default */
           $(this).parent().focus();
+        },
+        beforeClose: function(){
+          /** Setting overflow of html back to normal */
+          $('html').css("overflow", "visible");
         }
       });
       return;
@@ -593,9 +606,8 @@ function addDislike(resId) {
   } else {
     /**
      * API Call:
-     * PUT increment dislike counter for asset & decrement like counter for asset if needed
+     * PUT liked = false and disliked = true for logged in user.
      */
-    //TO DO
     
     var newDislike = {
       restaurant_like: {
@@ -730,10 +742,7 @@ function popInfo(result) {
       genresList,
       costSymbol,
       modalButtons;
-
-  /** Hide Overflow of html, visual improvement when modal is open */
-  $("html").css("overflow", "hidden");
-
+  
   /**
    * Feature: Make modal width responsive
    * Pro(s): Looks better on all screen/window sizes
@@ -795,8 +804,6 @@ function popInfo(result) {
       Close: function() {
         if(debug){console.log("> Closing modal.");}
         $(this).dialog("close");
-        /** Setting overflow of html back to normal */
-        $('html').css("overflow", "visible");
       }
     };
   } else {
@@ -804,8 +811,6 @@ function popInfo(result) {
       Close: function() {
         if(debug){console.log("> Closing modal.");}
         $(this).dialog("close");
-        /** Setting overflow of html back to normal */
-        $('html').css("overflow", "visible");
       }
     };
   }
@@ -817,7 +822,14 @@ function popInfo(result) {
     title: "More Information",
     buttons: modalButtons,
     open: function(event, ui) {
+      /** Hide Overflow of html, visual improvement when modal is open */
+      $("html").css("overflow", "hidden");
+      /** Set focus to parent so close button is not selected by default */
       $(this).parent().focus();
+    },
+    beforeClose: function(){
+      /** Setting overflow of html back to normal */
+      $('html').css("overflow", "visible");
     }
   });
   
@@ -828,7 +840,6 @@ function popInfo(result) {
  * @param {array} result
  */
 function editAsset(result){
-  //TO DO
   var modalButtons;
   if(debug){console.log("> Function Called: editAsset()");}
   modalButtons = {
@@ -878,14 +889,18 @@ $().ready(function() {
    * GET results from API
    * result apiResult
    */
-  $.get(apiEndpointBase + "/restaurants", function(response, status) {
-    if (status === "success") {
-      apiResult = JSON.stringify(response);
-      /** Set filters */
-      loadFilters();
-      /** Send API Result through the filters */
-      filter(startPage, apiResult);
-    }
+  if(!hideWarn){console.warn("> Making first call to server..");console.warn("> This may take a while if the server has not been hit in the past 30 minutes.");}
+  $.get(apiEndpointBase + "/restaurants", function(response){
+  }).done(function(response){
+    if(!hideWarn){console.warn("> Server Responded!");}
+    apiResult = JSON.stringify(response);
+    loadFilters();
+    filter(startPage, apiResult);
+  }).fail(function(){
+    if(!hideWarn){console.warn("> Server failed to responded in a timely manner, try again soon!");}
+    var serverTimeout = '<div class="row"><div class="col span-3-of-3 center">We are having trouble loading your matches right now. Excuse me while I go an check on the hampsters!<br />Try the <a href="#1" onclick="javascript: setFilters()">Apply FIlters</a> button in a little bit.</div></div>';
+    resultsContainer.append(serverTimeout);
+    $("#resultsContainer").fadeIn("slow");
   });
 
   /** Create event listener for the Apply Filters button */
