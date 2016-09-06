@@ -1,3 +1,4 @@
+
 (function(){
   var queryString = window.location.href; // Get the current URL
   queryString = queryString.split('?')[1]; // Get all characters after the ? in the URL
@@ -7,9 +8,11 @@
   if(queryString === "logout"){
     logout();
   }
-  
+
   $("input#loginUsername").focus();
 })();
+
+
 
 function login() {
     $.auth.emailSignIn({

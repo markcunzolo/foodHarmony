@@ -6,13 +6,13 @@ background-image: url("../css/images/lonelyDiner.jpeg");
 background-size: cover;
 background-position: center;
 background-attachment: fixed;
+
+    font-family: "Lato", "Arial", sans-serif;
+    font-size: 20px;
     
 }
-main {
 
 
-position: relative;
-}
 
 .centered{
     
@@ -26,11 +26,9 @@ position: relative;
 #kevModal{
     
     border-radius: 20px;
-    padding-bottom: 20px;
-    position: static;
-    z-index: 1;
-    left:40%; 
-    top:35%; 
+    padding-bottom: 15px;
+    width: 500px;
+    margin: 50px auto 0 auto;
     overflow: auto; 
     background-color:rgba(255,255,255,0.3); 
 
@@ -298,8 +296,43 @@ input[placeholder] {
   color:inherit;
   text-decoration:none;
 }
-=======
->>>>>>> Stashed changes
+
+
+
+.buttonFull:link,
+.buttonFull:visited {
+
+    display: block;
+    width: 100px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+	
+ 	background-color: #cf000f;
+ 	border: 1px solid #cf000f;
+ 	color: #fff;
+ 	-webkit-transition: background-color .25s, border .25s linear;
+ 	   -moz-transition: background-color .25s, border .25s linear;
+ 	    -ms-transition: background-color .25s, border .25s linear;
+ 	     -o-transition: background-color .25s, border .25s linear;
+ 	        transition: background-color .25s, border .25s linear;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
 
 
 
