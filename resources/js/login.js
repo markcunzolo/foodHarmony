@@ -43,7 +43,6 @@ PubSub.subscribe('auth.validation.success', function(ev, user) {
   window.location = 'index.html';
 });
 
-
 PubSub.subscribe('auth.emailRegistration.success', function(ev, msg) {
   confirmEmailModal();
   //alert('Thanks ' + msg.name + '. Check your email to confirm.');
@@ -72,19 +71,29 @@ function clearRegistration() {
   $('#registerUsername')[0].value = '';
 }
 
+function emailPassword() {
+var modal = document.getElementById('emailPass');
+var span = document.getElementsByClassName("close")[0];
+modal.style.display = 'block';
+span.onclick = function() {
+    modal.style.display = "none";
+};
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function forgotPassword() {
+    var formData = {
+        email: $('#passwordReset')[0].value,
+    }
+    $.auth.requestPasswordReset(formData);
+}
+PubSub.subscribe('auth.passwordResetRequest.success', function(ev, msg) {
+  alert('Check your email!');
+});
+PubSub.subscribe('auth.emailConfirmation.success', function(ev, msg) {
+  alert('Welcome' + $.auth.user.name + '! Change your password!');
+});

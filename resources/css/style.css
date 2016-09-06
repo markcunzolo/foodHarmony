@@ -568,19 +568,19 @@ footer p {
 	 position: relative;
 }
 #name {
-border-radius: 5px;
-box-shadow: 5px;
-width:55%;
-padding:5px;
-background-color: #fff;
-border: solid #ccc;
+	border-radius: 5px;
+	box-shadow: 5px;
+	width:55%;
+	padding:5px;
+	background-color: #fff;
+	border: solid #ccc;
 }
 #email {
-border-radius: 7px;
-width:55%;
-padding:5px;
-background-color: #fff;
-border: solid #ccc;
+	border-radius: 7px;
+	width:55%;
+	padding:5px;
+	background-color: #fff;
+	border: solid #ccc;
 }
 #message {
 	height:100px;
@@ -602,6 +602,9 @@ border: solid #ccc;
 	right: 478px;*/
 	color:#ccc;
 	font-size: 10px;
+}
+#laptopImg{
+	color:#ccc;
 }
 #contactInfo {
 	float: left;
