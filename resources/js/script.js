@@ -62,7 +62,7 @@ function updateRestaurantTypesCheckbox(restaurantTypes) { //creates new checkbox
     }
     var newCheckbox = document.createElement('div'); 
     newCheckbox.classList.add('col', 'span-1-of-4');
-    var checkboxContent = '<input class="checkbox" id="' + restaurantType.id + '" type="checkbox" name="' + restaurantType.name + '" value="' + restaurantType.name + '">' + 
+    var checkboxContent = '<input class="checkbox typeCheckbox" id="' + restaurantType.id + '" type="checkbox" name="' + restaurantType.name + '" value="' + restaurantType.name + '">' + 
     '<label class="checkboxLabel" for="' + restaurantType.id + '">' + restaurantType.name + '</label>';
     newCheckbox.innerHTML = checkboxContent;
     newRow.appendChild(newCheckbox);
@@ -83,7 +83,7 @@ function updateFoodTypesCheckbox(foodTypes) { //creates new checkbox for every a
     }
     var newCheckbox = document.createElement('div'); 
     newCheckbox.classList.add('col', 'span-1-of-4');
-    var checkboxContent = '<input class="checkbox" id="' + foodType.id + '" type="checkbox" name="' + foodType.name + '" value="' + foodType.name + '">' + 
+    var checkboxContent = '<input class="checkbox foodCheckbox" id="' + foodType.id + '" type="checkbox" name="' + foodType.name + '" value="' + foodType.name + '">' + 
     '<label class="checkboxLabel" for="' + foodType.id + '">' + foodType.name + '</label>';
     newCheckbox.innerHTML = checkboxContent;
     newRow.appendChild(newCheckbox);
