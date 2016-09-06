@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/markcunzolo/foodHarmony#readme",
   "dependencies": {
-    "j-toker": "0.0.10-beta3"
+    "j-toker": "0.0.10-beta3",
+    "bootpag": "1.0.7"
   }
 }

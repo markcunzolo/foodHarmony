@@ -16,18 +16,21 @@
 
 
 <body>
-
+	<header id="header">
 	<div class="stickyNav">
 		<div class="row">
 			<a class="logoName" href="./">foodHarmony</a>
 			<ul class="mainNav">
-				<li><a href="#search">Search</a></li>
-				<li><a href="#suggest">Add</a></li>
-				<li><a href="./index2.html">Contact Us</a></li>
-				<li><a href="#">Join / Login</a></li>
+				<li><a href="index.html#search">Search</a></li>
+				<li><a href="index.html#suggest">Add</a></li>
+				<li><a href="contact.html">Contact Us</a></li>
+				<li id="loginListItem"><a href="login.html">Join / Login</a></li>
+				<li id="logoutListItem"><a href="login.html?logout">Logout</a></li>
+				<li><span id='usersName'></span></li>
 			</ul>
-		</div>
+			</div>
 	</div>
+	</header>
 
 	<section id="resultsContainer" class="searchResults">
 
@@ -80,6 +83,9 @@
 
 		</div>
 	</section>
+	<div id="loginModal">
+		You must be logged in to use this feature.
+	</div>
 	<div id="modal">
 		<div class="row">
 			<div class="col span-1-of-4">
@@ -97,25 +103,25 @@
 					<div class="col span-1-of-4 right bold">
 						Name:
 					</div>
-					<div id="infoRestaurantName" class="col span-3-of-4"></div>
+					<div id="infoRestaurantName" class="col span-3-of-4">N/A</div>
 				</div>
 				<div class="row">
 					<div class="col span-1-of-4 right bold">
 						Address:
 					</div>
-					<div id="infoRestaurantAddress" class="col span-3-of-4"></div>
+					<div id="infoRestaurantAddress" class="col span-3-of-4">N/A</div>
 				</div>
 				<div class="row">
 					<div class="col span-1-of-4 right bold">
 						Phone:
 					</div>
-					<div id="infoRestaurantPhone" class="col span-3-of-4"></div>
+					<div id="infoRestaurantPhone" class="col span-3-of-4">N/A</div>
 				</div>
 				<div class="row">
 					<div class="col span-1-of-4 right bold">
 						Website:
 					</div>
-					<div id="infoRestaurantWebsite" class="col span-3-of-4"><a href="#"></a>&nbsp;<i class="fa fa-external-link" aria-hidden="true" title="Links to an external site, not controlled by foodHarmony."></i></div>
+					<div id="infoRestaurantWebsite" class="col span-3-of-4">N/A&nbsp;<i class="fa fa-external-link" aria-hidden="true" title="Links to an external site, not controlled by foodHarmony."></i></div>
 				</div>
 				<div class="row">
 					<div class="col span-1-of-4 right bold">
@@ -123,11 +129,11 @@
 					</div>
 					<div class="col span-3-of-4">
 						<ul id="infoList">
-							<li id="infoRestaurantType"></li>
+							<li id="infoRestaurantType" title="Dining Type">N/A</li>
 							<li class="seperator"><i class="fa fa-asterisk" aria-hidden="true"></i></li>
-							<li id="infoRestaurantCuisine"></li>
+							<li id="infoRestaurantCuisine" title="Cuisine">N/A</li>
 							<li class="seperator"><i class="fa fa-asterisk" aria-hidden="true"></i></li>
-							<li id="infoRestaurantCost"></li>
+							<li id="infoRestaurantCost" title="Average Cost">N/A</li>
 						</ul>
 					</div>
 				</div>
@@ -144,6 +150,7 @@
 
 	<script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 	<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+	<script src="node_modules/bootpag/lib/jquery.bootpag.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/api-variables.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/script.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/js/results.js" type="text/javascript" charset="utf-8"></script>
