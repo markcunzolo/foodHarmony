@@ -7,6 +7,9 @@ var apiRestaurantTypes = apiEndpointBase + '/types';
 //Api location for types of food
 var apiFoodTypes = apiEndpointBase + '/genres';
 
+//Api location for all restaurants
+var apiRestaurants = apiEndpointBase + "/restaurants";
+
 //API location adding likes/dislikes
 var apiUpdateLikes = apiEndpointBase + '/restaurant_likes';
 

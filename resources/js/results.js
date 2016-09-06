@@ -354,24 +354,22 @@ function displayResults(pageNum, results) {
       if (result.restaurant_likes[m].disliked) {
         dislikeCount += 1;
       }
-      if ( parseInt(uID) > 0 && parseInt(result.restaurant_likes[m].user_id) === parseInt(uID) ) {
-        if(debug){console.log("> Checking if User " + result.restaurant_likes[m].user_id + " likes or dislikes restaurant " + result.id);}
-        if (result.restaurant_likes[m].liked) {
-          if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " likes restaurant " + result.id);}
-          isLiked = true;
-          return false;
-        } else if (result.restaurant_likes[m].disliked) {
-         if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " dislikes restaurant " + result.id);}
-          isDisliked = true;
-          return false;
-        } else {
-          if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " has no opinion ons restaurant " + result.id);}
-          isLiked = false;
-          isDisliked = false;
-        }
-      } else {
-        if(debug){console.warn("User " + result.restaurant_likes[m].user_id + " is not the logged in user. Checking next record.");}
-      }
+       if ( parseInt(uID) > 0 && parseInt(result.restaurant_likes[m].user_id) === parseInt(uID) ) {
+         if(debug){console.log("> Checking if User " + result.restaurant_likes[m].user_id + " likes or dislikes restaurant " + result.id);}
+         if (result.restaurant_likes[m].liked) {
+           if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " likes restaurant " + result.id);}
+           isLiked = true;
+         } else if (result.restaurant_likes[m].disliked) {
+          if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " dislikes restaurant " + result.id);}
+           isDisliked = true;
+         } else {
+           if(debug){console.log("> User " + result.restaurant_likes[m].user_id + " has no opinion ons restaurant " + result.id);}
+           isLiked = false;
+           isDisliked = false;
+         }
+       } else {
+         if(debug){console.warn("User " + result.restaurant_likes[m].user_id + " is not the logged in user. Checking next record.");}
+       }
     });
 
     /** Build the HTML for the result */
@@ -797,10 +795,10 @@ function popInfo(result) {
   /** Display Modal with other info about asset */
   if(uID > 0){
     modalButtons = {
-      "Edit": function(){
-        if(debug){console.log("> Edit Button clicked!");}
-        editAsset(result);
-      },
+//       "Edit": function(){
+//         if(debug){console.log("> Edit Button clicked!");}
+//         editAsset(result);
+//       },
       Close: function() {
         if(debug){console.log("> Closing modal.");}
         $(this).dialog("close");
@@ -840,6 +838,8 @@ function popInfo(result) {
  * @param {array} result
  */
 function editAsset(result){
+  //TODO: Create text boxes, combo boxes, etc for editing
+  
   var modalButtons;
   if(debug){console.log("> Function Called: editAsset()");}
   modalButtons = {
@@ -890,7 +890,7 @@ $().ready(function() {
    * result apiResult
    */
   if(!hideWarn){console.warn("> Making first call to server..");console.warn("> This may take a while if the server has not been hit in the past 30 minutes.");}
-  $.get(apiEndpointBase + "/restaurants", function(response){
+  $.get(apiRestaurants, function(response){
   }).done(function(response){
     if(!hideWarn){console.warn("> Server Responded!");}
     apiResult = JSON.stringify(response);

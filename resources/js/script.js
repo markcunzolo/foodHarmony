@@ -119,6 +119,20 @@ $(document).ready(function(){ //when the document finishes loading, do these thi
     $('#logoutListItem').hide();   
   }
 
+  $('a[href*=#]').click(function() { //find any link that looks like <a href="#"> and add a click event to it
+    //Check that the link is pointing to the same page and domain, strips the # and just looks at what comes after
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var $target = $(this.hash); //set target equal to the anchor part of the url
+      $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+      if ($target.length) {
+        var targetOffset = $target.offset().top; //set the coordinates of the top of the element
+        $('html,body').animate({ //get the html body and snimate a scroll to the targetOffset position in 1 second
+          scrollTop: targetOffset}, 1000);
+       return false;
+      }
+    }
+  });
+
   $('#detailedSearchButton').click(function(){
     window.location = "results.html?type="+$('#restaurantTypeSearch').val()+"&food="+$('#foodTypeSearch').val()+"&cost="+$('#costLevelSearch').val();
   });
