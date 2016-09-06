@@ -38,11 +38,78 @@ position: relative;
 font-family: 'Damion', cursive;
 font-size: 80%;
 color: white;
-background-color: #ad000d
-
-
-
+background-color: #ad0000;
    }
+
+/* -------------------------------------------------------------------------------------------------- */
+/* ADD-RESTAURANT MODAL:                                                                              */
+/* -------------------------------------------------------------------------------------------------- */
+
+.modalOver {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0px;
+    top:10px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #efefef;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modalContent {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba (0,0,0,0.19);
+
+}
+
+.modalHeader {
+    padding: 10px;
+    background-color: #ad000d;
+    color: white;
+    font-weight: bold;
+}
+
+.modalBody{
+    background-color: white;
+    color: black;
+    padding: 100px;
+    text-align: center;
+    margin: 0px, 100px;
+}
+
+.close {
+    color: white;
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.close:hover,
+.close:focus {
+    color: #E9D460;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 #loginFooter{
   text-align:center;

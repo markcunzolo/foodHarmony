@@ -34,16 +34,31 @@
                 <input type="password" size="35" name="PasswordConfirmation" id="registerPasswordConfirmation"><br>
 
                 <input type="button" size="40" value="Create an Account" onclick="register()">
-                
+
                 <hr>
                 <div id="loginFooter">
                   <a href="index.html">Back to Home</a>
                 </div>
              </div>
         </div>
+
+                <div id='addRestaurantModal' class='modalOver'>
+                    <div class='modalContent'>
+                        <div class='modalHeader'>
+                            <span class='close'>x</span>
+                            <h2>Welcome!</h2>
+                        </div>
+                        <div class='modalBody'>
+                            <p>Thank you for signing up for foodHarmony.<br> Please check your email to confirm and get started with your account.</p>
+                        </div>
+                    </div>
+                </div>
+
     </div>
 
 </body> 
+
+
 
 <script src='node_modules/j-toker/node_modules/jquery/dist/jquery.js'></script>
 <script src='node_modules/j-toker/node_modules/jquery.cookie/jquery.cookie.js'></script>

@@ -45,8 +45,32 @@ PubSub.subscribe('auth.validation.success', function(ev, user) {
 
 
 PubSub.subscribe('auth.emailRegistration.success', function(ev, msg) {
-  alert('Thanks ' + msg.name + '. Check your email to confirm.');
+  confirmEmailModal();
+  //alert('Thanks ' + msg.name + '. Check your email to confirm.');
 });
+
+function confirmEmailModal() {
+  var modal = document.getElementById('addRestaurantModal');
+  var span = document.getElementsByClassName("close")[0];
+  modal.style.display = 'block';
+  span.onclick = function() {
+      modal.style.display = "none";
+      clearRegistration();
+  };
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+          clearRegistration();
+      }
+  };
+}
+
+function clearRegistration() {
+  $('#name')[0].value = '';
+  $('#registerPassword')[0].value = '';
+  $('#registerPasswordConfirmation')[0].value = '';
+  $('#registerUsername')[0].value = '';
+}
 
 
 
