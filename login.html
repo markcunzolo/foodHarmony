@@ -1,68 +1,84 @@
-<html><head>
+<html>
+<head>
     <link rel="stylesheet" type="text/css" href="resources/css/loginStyle.css">
     <link href="https://fonts.googleapis.com/css?family=Damion|Lato:300,400,700" rel="stylesheet">
 </head>
 
 <body>
-    <div id="main">
-        <div class="centered">
-            <div id="kevModal" class="modal">
-                <div id="modelStuff">
-                    <h1>foodHarmony</h1>
-                </div>
-                <label>Username:</label><br>
-                <input type="email" size="30" name="Login" id="loginUsername"><br>
+<div id="main">
+    <div class="centered">
+        <div id="kevModal" class="modal">
+            <div id="modelStuff">
+                <h1>foodHarmony</h1>
+            </div>
+            <label>Username:</label><br>
+            <input type="email" size="30" name="Login" id="loginUsername"><br>
 
-                <label>Password:</label> <br>
+            <label>Password:</label> <br>
 
-                <input type="password" size="30" name="Password" id="loginPassword"><br>
+            <input type="password" size="30" name="Password" id="loginPassword"><br>
 
-                <!--<a class="button" href="">Click Me</a>-->
+            <!--<a class="button" href="">Click Me</a>-->
 
-                <a class="button buttonFull" id="Login" href="#" onclick="login()">Login</a>
+            <a class="button buttonFull" id="Login" href="#" onclick="login()">Login</a>
 
-                <hr>
-                <div id="modelStuff">
+            <hr>
+            <div id="modelStuff">
                 <h1>Create an Account</h1>
-                </div>
+            </div>
 
-                <label>Name:</label><br>
-                <input type="text" size="30" name="Name" id="name"><br>
+            <label>Name:</label><br>
+            <input type="text" size="30" name="Name" id="name"><br>
 
-                <label>Username:</label><br>
-                <input type="email" size="30" name="Login" id="registerUsername"><br>
+            <label>Username:</label><br>
+            <input type="email" size="30" name="Login" id="registerUsername"><br>
 
-                <label>Password:</label> <br>
-                <input type="password" size="30" name="Password" id="registerPassword"><br>
+            <label>Password:</label> <br>
+            <input type="password" size="30" name="Password" id="registerPassword"><br>
 
-                <label>Confirm Password:</label> <br>
-                <input type="password" size="30" name="PasswordConfirmation" id="registerPasswordConfirmation"><br>
+            <label>Confirm Password:</label> <br>
+            <input type="password" size="30" name="PasswordConfirmation" id="registerPasswordConfirmation"><br>
 
-                <!--<input type="button" size="40" value="Create an Account" onclick="register()">-->
-                <a class="button buttonFull" id="Create An Account" href="#" onclick="register()">Create an Account</a>
+            <!--<input type="button" size="40" value="Create an Account" onclick="register()">-->
+            <a class="button buttonFull" id="Create An Account" href="#" onclick="register()">Create an Account</a>
 
-                <hr>
+            <hr>
 
-                <!--<input type="button" size="40" value="Forgot Password" onclick="emailPassword()">-->
-                <!--<a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>-->
-                <a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>
-                <div id='emailPass' class='modal2'>
-                    <div class='modalContent2'>
-                        <div class='modalHeader2'>
-                            <span class='close'>x</span>
-                            <h2 id="fP">Forgot Password?</h2>
-                        </div>
-                        <div class='modalBody2'>
-                            <p>Find your foodHarmony account<br>
-                                Enter your email</p><br>
-                        <input type="email" size="30" name="email" class="forgotInput" placeholder="Email Address" id="passwordReset"><br>
+
+            <!--<input type="button" size="40" value="Forgot Password" onclick="emailPassword()">-->
+            <!--<a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>-->
+            <a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>
+            <div id='emailPass' class='modal2'>
+                <div class='modalContent2'>
+                    <div class='modalHeader2'>
+                        <span class='close'>x</span>
+                        <h2 id="fP">Forgot Password?</h2>
+                    </div>
+                    <div class='modalBody2'>
+                        <p>Find your foodHarmony account<br>
+                            Enter your email</p><br>
+                        <input type="email" size="30" name="email" class="forgotInput" placeholder="Email Address"
+                               id="passwordReset"><br>
                         <input type="submit" onclick="forgotPassword()" class="searchButton" value="Recover Password">
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div id='addRestaurantModal' class='modalOver'>
+    <div class='modalContent'>
+        <div class='modalHeader'>
+            <span class='close'>x</span>
+            <h2>Welcome!</h2>
+        </div>
+        <div class='modalBody'>
+            <p>Thank you for signing up for foodHarmony.<br> Please check your email to confirm and get started with
+                your account.</p>
+        </div>
+    </div>
+</div>
+
 <script src="resources/js/api-variables.js"></script>
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="node_modules/jquery.cookie/jquery.cookie.js"></script>
