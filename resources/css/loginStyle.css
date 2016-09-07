@@ -165,6 +165,9 @@ body {
 	color: white;
 	font-weight: bold;
 }
+#fP{
+	text-align: center;
+}
 
 .modalBody2{
 	background-color: white;
@@ -175,7 +178,7 @@ body {
     padding-bottom:60px;
     padding-top:50px;
 	text-align: center;
-	margin: 0px 150px;
+	margin: 0px;
     font-weight: bold;
 }
 
@@ -200,7 +203,7 @@ padding:3px;
 background-color: #fff;
 border: solid #ccc;
 margin-bottom: 30px;
-height: 10%
+height: 7%
 }
 /*input[type="email"]
 {
@@ -275,19 +278,6 @@ input[placeholder] {
     text-decoration: none;
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 #loginFooter{
   text-align:center;
 }
@@ -358,7 +348,6 @@ input[placeholder] {
 }   
 
 
-
 .buttonFull:link,
 .buttonFull:visited {
 
@@ -393,8 +382,5 @@ a:hover {
 a:active {
     text-decoration: underline;
 }
-
-
-
 
 

@@ -43,21 +43,33 @@
 
                 <hr>
 
-                
                 <!--<input type="button" size="40" value="Forgot Password" onclick="emailPassword()">-->
+                <!--<a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>-->
                 <a class="button buttonFull" id="Forgot Password" href="#" onclick="emailPassword()">Get My Password</a>
-
-
+                <div id='emailPass' class='modal2'>
+                    <div class='modalContent2'>
+                        <div class='modalHeader2'>
+                            <span class='close'>x</span>
+                            <h2 id="fP">Forgot Password?</h2>
+                        </div>
+                        <div class='modalBody2'>
+                            <p>Find your foodHarmony account<br>
+                                Enter your email</p><br>
+                        <input type="email" size="30" name="email" class="forgotInput" placeholder="Email Address" id="passwordReset"><br>
+                        <input type="submit" onclick="forgotPassword()" class="searchButton" value="Recover Password">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
-<script src="node_modules/j-toker/node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/j-toker/node_modules/jquery.cookie/jquery.cookie.js"></script>
-<script src="node_modules/j-toker/node_modules/jquery-deparam/jquery-deparam.js"></script>
-<script src="node_modules/j-toker/node_modules/pubsub-js/src/pubsub.js"></script>
+<script src="resources/js/api-variables.js"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/jquery.cookie/jquery.cookie.js"></script>
+<script src="node_modules/jquery-deparam/jquery-deparam.js"></script>
+<script src="node_modules/pubsub-js/src/pubsub.js"></script>
 <script src="node_modules/j-toker/dist/jquery.j-toker.js"></script>
 <script src="resources/js/login.js"></script>
 
-</body></html>
+</body>
+</html>
