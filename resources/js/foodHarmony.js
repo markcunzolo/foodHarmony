@@ -4,8 +4,6 @@ Add Restaurant AJAX Post
 
 function postRestaurant() {
 
-
-
   var checkedGenres = [];
   var genres = $('.foodCheckbox');
   for (i=0; i<genres.length; i++) {
@@ -13,9 +11,6 @@ function postRestaurant() {
       checkedGenres.push(parseInt(genres[i].id));
     }
   };
-
-
-
 
   var checkedTypes = [];
   var types = $('.typeCheckbox');
@@ -25,15 +20,8 @@ function postRestaurant() {
     }
   };
 
-
-
-
   var costRad = document.querySelector('input[name="costLevel"]:checked').value;
-  /*costCbs.forEach(function(cb) {
-    if(cb.checked){
-      costCbs = cb.value
-    }
-  });*/
+
 
   var comment = {
     "restaurant" : {
@@ -51,6 +39,7 @@ function postRestaurant() {
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200){
       addRestaurant();
+      clearRestaurantForm();
     };
   };
 xhttp.open("POST", 'https://food-harmony.herokuapp.com/restaurants');
@@ -70,4 +59,28 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+}
+
+function clearRestaurantForm() {
+document.getElementById('restName').value = "";
+document.getElementById('streetAddress').value = "";
+document.getElementById('zipcode').value = '';
+document.getElementById('website').value = '';
+document.getElementById('phoneNumber').value = '';
+var cbsType = $('.typeCheckbox');
+  for (i=0; i<cbsType.length; i++) {
+    if (cbsType[i].checked) {
+      cbsType[i].checked = false;
+    }
+  };
+var cbsGenres = $('.foodCheckbox');
+  for (i=0; i<cbsGenres.length; i++) {
+    if (cbsGenres[i].checked) {
+      cbsGenres[i].checked = false;
+    }
+  };
+var ele = document.getElementsByName("costLevel");
+   for(var i=0;i<ele.length;i++) {
+      ele[i].checked = false;
+   };
 }

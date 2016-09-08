@@ -567,7 +567,7 @@ footer p {
 	 margin:0 auto;
 	 position: relative;
 }
-#name {
+#contactName {
 	border-radius: 5px;
 	box-shadow: 5px;
 	width:55%;
@@ -575,14 +575,14 @@ footer p {
 	background-color: #fff;
 	border: solid #ccc;
 }
-#email {
+#contactEmail {
 	border-radius: 7px;
 	width:55%;
 	padding:5px;
 	background-color: #fff;
 	border: solid #ccc;
 }
-#message {
+#contactMessage {
 	height:100px;
 	width: 55%;
 	border-radius: 7px;
