@@ -91,10 +91,10 @@ function filter(pageNum, data) {
     tmp += '{';
     tmp += '"id": ' + response[i].id + ', ';
     tmp += '"name": "' + response[i].name + '", ';
-    if (!response[i].street_name) {
-      tmp += '"street_name": null, ';
+    if (!response[i].street_address) {
+      tmp += '"street_address": null, ';
     } else {
-      tmp += '"street_name": "' + response[i].street_name + '", ';
+      tmp += '"street_address": "' + response[i].street_address + '", ';
     }
     if (!response[i].zip_code) {
       tmp += '"zip_code": null, ';
@@ -736,6 +736,7 @@ function setFilters() {
 function popInfo(result) {
   if(debug){console.log("> Function Called: popInfo()");}
   var i,
+      fqwa,
       typesList,
       genresList,
       costSymbol,
@@ -753,17 +754,34 @@ function popInfo(result) {
   if (resIMG.length > 1) {
     $("#infoRestaurantImage").prop('src', resIMG);
   }
-  if (result.name && result.name.length > 1) {
+  if (result.name) {
     $("#infoRestaurantName").html(result.name);
+  } else {
+    $("#infoRestaurantName").html("N/A");
   }
-  if (result.street_address && result.zip_code && result.street_address.length > 1 && result.zip_code.length > 1) {
-    $("#infoRestaurantAddress").html(result.street_address + ", Pittsburgh " + result.zip_code);
+  if (result.street_address && result.zip_code) {
+    /** Replace spaces with + signs for maps url */
+    mapsAddr = result.street_address.replace(/ /g, '+') + ',+Pittsbrurgh,+PA+' + result.zip_code;
+    $("#infoRestaurantAddress").html('<a href="https://www.google.com/maps/place/'+mapsAddr+'" target="_blank">'+result.street_address + ', Pittsburgh, PA ' + result.zip_code + '</a>&nbsp;<i class="fa fa-external-link" aria-hidden="true" title="Links to an external site, not controlled by foodHarmony."></i>');
+  } else {
+    $("#infoRestaurantAddress").html("N/A");
   }
-  if (result.phone_number && result.phone_number.length > 1) {
+  if (result.phone_number) {
     $("#infoRestaurantPhone").html(result.phone_number);
+  } else {
+    $("#infoRestaurantPhone").html("N/A");
   }
-  if (result.web_site && result.web_site.length > 1) {
-    $("#infoRestaurantWebsite").html('<a href="' + result.web_site + '" target="_blank">' + result.web_site + '</a>');
+  if (result.web_site) {
+    /** Checks in provided web site address has HTTP:// and adds it if not */
+    if(!result.web_site.match(/^[a-zA-Z]+:\/\//)){
+      fqwa = 'http://' + result.web_site;
+    } else {
+      fqwa = result.web_site;
+    }
+    /** Print the 'Fully Qualified Web Address' in the anchor's href and removes the http:// and any trailing / for the text of the anchor */
+    $("#infoRestaurantWebsite").html('<a href="' + fqwa + '" target="_blank">' + fqwa.replace(/.*?:\/\//g, "").replace(/\/$/, "") + '</a>&nbsp;<i class="fa fa-external-link" aria-hidden="true" title="Links to an external site, not controlled by foodHarmony."></i>');
+  } else {
+    $("#infoRestaurantWebsite").html("N/A");
   }
 
   if (result.types) {
@@ -773,6 +791,8 @@ function popInfo(result) {
     }
     typesList = typesList.substring(0, typesList.length - 2);
     $("#infoRestaurantType").html(typesList);
+  } else {
+    $("#infoRestaurantType").html("N/A");
   }
 
   if (result.genres) {
@@ -782,6 +802,8 @@ function popInfo(result) {
     }
     genresList = genresList.substring(0, genresList.length - 2);
     $("#infoRestaurantCuisine").html(genresList);
+  } else {
+    $("#infoRestaurantCuisine").html("N/A");
   }
 
   if (result.cost) {
@@ -790,6 +812,8 @@ function popInfo(result) {
       costSymbol += "$";
     }
     $("#infoRestaurantCost").html(costSymbol);
+  } else {
+    $("#infoRestaurantCost").html("N/A");
   }
 
   /** Display Modal with other info about asset */
